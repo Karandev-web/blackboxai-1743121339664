@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Your Perfect Journey | AI Trip Planner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+        .slide-up { animation: slideUp 0.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .step-content { transition: all 0.3s ease; }
+        .btn-spin { animation: spin 1s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .gradient-bg {
+            background: linear-gradient(135deg, #6B73FF 0%, #000DFF 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-plane-departure text-blue-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-900">Discover Your Journey</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-4">
+                    <a href="#" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="#" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Features</a>
+                    <a href="#" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">How It Works</a>
+                    <a href="#" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium">Testimonials</a>
+                    <div class="flex space-x-2">
+                        <a href="#" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Login</a>
+                        <span class="text-gray-300 py-2">|</span>
+                        <a href="#" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">Sign Up</a>
+                    </div>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">Plan My Trip</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="gradient-bg text-white">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+                    Discover Your Perfect Journey
+                </h1>
+                <p class="mt-6 max-w-lg mx-auto text-xl">
+                    Let our AI create a personalized trip itinerary for you - completely free!
+                </p>
+                <div class="mt-10 max-w-3xl mx-auto fade-in" data-aos="fade-up">
+                    <div class="bg-white rounded-lg shadow-xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">AI Trip Planner</h3>
+                            
+                            <!-- Progress Steps -->
+                            <div class="mb-8">
+                                <div class="flex justify-between">
+                                    <div class="step flex flex-col items-center" data-step="1">
+                                        <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center mb-2">1</div>
+                                        <span class="text-sm font-medium text-gray-700">Destination</span>
+                                    </div>
+                                    <div class="step flex flex-col items-center" data-step="2">
+                                        <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center mb-2">2</div>
+                                        <span class="text-sm font-medium text-gray-500">Details</span>
+                                    </div>
+                                    <div class="step flex flex-col items-center" data-step="3">
+                                        <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center mb-2">3</div>
+                                        <span class="text-sm font-medium text-gray-500">Preferences</span>
+                                    </div>
+                                    <div class="step flex flex-col items-center" data-step="4">
+                                        <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center mb-2">4</div>
+                                        <span class="text-sm font-medium text-gray-500">Review</span>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-4">
+                                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 25%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Step 1: Destination -->
+                            <div class="step-content" id="step-1">
+                                <div class="mb-6">
+                                    <label class="block text-lg font-medium text-gray-700 mb-2">Where would you like to go?</label>
+                                    <div class="relative">
+                                        <input type="text" id="destination" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter city or country">
+                                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                            <i class="fas fa-search text-gray-400"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-end">
+                                <button class="next-step px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
+                                    Next <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Trip Details -->
+                            <div class="step-content hidden" id="step-2">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                    <div>
+                                        <label class="block text-lg font-medium text-gray-700 mb-2">Travel Dates</label>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="block text-sm text-gray-500 mb-1">From</label>
+                                                <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm text-gray-500 mb-1">To</label>
+                                                <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-lg font-medium text-gray-700 mb-2">Travelers</label>
+                                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                            <option>1 traveler</option>
+                                            <option>2 travelers</option>
+                                            <option>3-5 travelers</option>
+                                            <option>6+ travelers</option>
+                                            <option>Family (4+)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between">
+                                    <button class="prev-step px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition duration-200">
+                                        <i class="fas fa-arrow-left mr-2"></i> Back
+                                    </button>
+                                    <button class="next-step px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200">
+                                        Next <i class="fas fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Preferences -->
+                            <div class="step-content hidden" id="step-3">
+                                <div class="mb-6">
+                                    <label class="block text-lg font-medium text-gray-700 mb-2">Budget</label>
+                                    <div class="grid grid-cols-3 gap-4">
+                                        <label class="budget-option">
+                                            <input type="radio" name="budget" class="hidden peer" checked>
+                                            <div class="p-4 border border-gray-300 rounded-lg peer-checked:border-blue-500 peer-checked:bg-blue-50 text-center">
+                                                <i class="fas fa-rupee-sign text-2xl mb-2 text-gray-600 peer-checked:text-blue-600"></i>
+                                                <p class="font-medium">Budget</p>
+                                                <p class="text-sm text-gray-500">₹10,000-₹50,000</p>
+                                            </div>
+                                        </label>
+                                        <label class="budget-option">
+                                            <input type="radio" name="budget" class="hidden peer">
+                                            <div class="p-4 border border-gray-300 rounded-lg peer-checked:border-blue-500 peer-checked:bg-blue-50 text-center">
+                                                <i class="fas fa-rupee-sign text-2xl mb-2 text-gray-600 peer-checked:text-blue-600"></i>
+                                                <p class="font-medium">Mid-range</p>
+                                                <p class="text-sm text-gray-500">₹50,000-₹1,50,000</p>
+                                            </div>
+                                        </label>
+                                        <label class="budget-option">
+                                            <input type="radio" name="budget" class="hidden peer">
+                                            <div class="p-4 border border-gray-300 rounded-lg peer-checked:border-blue-500 peer-checked:bg-blue-50 text-center">
+                                                <i class="fas fa-rupee-sign text-2xl mb-2 text-gray-600 peer-checked:text-blue-600"></i>
+                                                <p class="font-medium">Luxury</p>
+                                                <p class="text-sm text-gray-500">₹1,50,000+</p>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="mb-6">
+                                    <label class="block text-lg font-medium text-gray-700 mb-2">Interests</label>
+                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                        <label class="interest-option">
+                                            <input type="checkbox" class="hidden peer">
+                                            <div class="p-3 border border-gray-300 rounded-lg peer-checked:border-blue-500 peer-checked:bg-blue-50 text-center">
+                                                <i class="fas fa-hiking text-xl mb-1 text-gray-600 peer-checked:text-blue-600"></i>
+                                                <p>Adventure</p>
+                                            </div>
+                                        </label>
+                                        <label class="interest-option">
+                                            <input type="checkbox" class="hidden peer">
+                                            <div class="p-3 border border-gray-300 rounded-lg peer-checked:border-blue-500 peer-checked:bg-blue-50 text-center">
+                                                <i class="fas fa-landmark text-xl mb-1 text-gray-600 peer-checked:text-blue-600"></i>
+                                                <p>Culture</p>
+                                            </div>
+                                        </label>
+                                        <label class="interest-option">
+                                            <input type="checkbox" class="hidden peer">
+                                            <div class="p-3 border border-gray-300 rounded-lg peer-checked:border-blue-500 peer-checked:bg-blue-50 text-center">
+                                                <i class="fas fa-utensils text-xl mb-1 text-gray-600 peer-checked:text-blue-600"></i>
+                                                <p>Food</p>
+                                            </div>
+                                        </label>
+                                        <label class="interest-option">
+                                            <input type="checkbox" class="hidden peer">
+                                            <div class="p-3 border border-gray-300 rounded-lg peer-checked:border-blue-500 peer-checked:bg-blue-50 text-center">
+                                                <i class="fas fa-umbrella-beach text-xl mb-1 text-gray-600 peer-checked:text-blue-600"></i>
+                                                <p>Relaxation</p>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between">
+                                    <button class="prev-step px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition duration-200">
+                                        <i class="fas fa-arrow-left mr-2"></i> Back
+                                    </button>
+                                    <button class="next-step px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200">
+                                        Next <i class="fas fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 4: Review -->
+                            <div class="step-content hidden" id="step-4">
+                                <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                                    <h4 class="font-medium text-blue-800 mb-2">Review your trip details</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <p class="text-gray-500">Destination</p>
+                                            <p class="font-medium" id="review-destination">-</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-500">Dates</p>
+                                            <p class="font-medium" id="review-dates">-</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-500">Travelers</p>
+                                            <p class="font-medium" id="review-travelers">-</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-500">Budget</p>
+                                            <p class="font-medium" id="review-budget">-</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-6">
+                                    <label class="block text-lg font-medium text-gray-700 mb-2">Email for itinerary</label>
+                                    <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="your@email.com">
+                                </div>
+                                <div class="flex justify-between">
+                                    <button class="prev-step px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition duration-200">
+                                        <i class="fas fa-arrow-left mr-2"></i> Back
+                                    </button>
+                                    <button type="submit" class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-200">
+                                        <i class="fas fa-paper-plane mr-2"></i> Generate Itinerary
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+                <script>
+                    // Multi-step form functionality
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Initialize animations
+                        AOS.init({
+                            duration: 800,
+                            easing: 'ease-in-out',
+                            once: true
+                        });
+                        const steps = document.querySelectorAll('.step-content');
+                        const stepIndicators = document.querySelectorAll('.step');
+                        const progressBar = document.querySelector('.bg-blue-600');
+                        let currentStep = 1;
+
+                        function showStep(stepNumber) {
+                            steps.forEach(step => step.classList.add('hidden'));
+                            document.getElementById(`step-${stepNumber}`).classList.remove('hidden');
+                            
+                            // Update step indicators
+                            stepIndicators.forEach((indicator, index) => {
+                                const circle = indicator.querySelector('div');
+                                const text = indicator.querySelector('span');
+                                if (index < stepNumber) {
+                                    circle.classList.remove('bg-gray-200', 'text-gray-600');
+                                    circle.classList.add('bg-blue-600', 'text-white');
+                                    text.classList.remove('text-gray-500');
+                                    text.classList.add('text-gray-700');
+                                } else {
+                                    circle.classList.remove('bg-blue-600', 'text-white');
+                                    circle.classList.add('bg-gray-200', 'text-gray-600');
+                                    text.classList.remove('text-gray-700');
+                                    text.classList.add('text-gray-500');
+                                }
+                            });
+                            
+                            // Update progress bar
+                            const progress = (stepNumber / steps.length) * 100;
+                            progressBar.style.width = `${progress}%`;
+                        }
+
+                        document.querySelectorAll('.next-step').forEach(button => {
+                            button.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                if (currentStep < steps.length) {
+                                    currentStep++;
+                                    showStep(currentStep);
+                                }
+                            });
+                        });
+
+                        document.querySelectorAll('.prev-step').forEach(button => {
+                            button.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                if (currentStep > 1) {
+                                    currentStep--;
+                                    showStep(currentStep);
+                                }
+                            });
+                        });
+
+                        // Initialize
+                        showStep(1);
+                    });
+
+                    // Form submission handler
+                    const generateBtn = document.getElementById('generate-btn');
+                    if (generateBtn) {
+                        generateBtn.addEventListener('click', async function() {
+                            // Collect form data
+                            const formData = {
+                                destination: document.getElementById('destination').value,
+                                startDate: document.querySelector('#step-2 input[type="date"]:first-of-type').value,
+                                endDate: document.querySelector('#step-2 input[type="date"]:last-of-type').value,
+                                travelers: document.querySelector('#step-2 select').value,
+                                budget: document.querySelector('#step-3 input[name="budget"]:checked').parentElement.querySelector('p').textContent,
+                                interests: Array.from(document.querySelectorAll('#step-3 input[type="checkbox"]:checked'))
+                                            .map(cb => cb.parentElement.querySelector('p').textContent),
+                                email: document.querySelector('#step-4 input[type="email"]').value
+                            };
+
+                            // Validate required fields
+                            let errorFields = [];
+                            if (!formData.destination) errorFields.push('Destination');
+                            if (!formData.startDate) errorFields.push('Start Date');
+                            if (!formData.endDate) errorFields.push('End Date');
+                            if (!formData.email) errorFields.push('Email');
+                        
+                            if (errorFields.length > 0) {
+                                const errorHtml = `
+                                    <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fas fa-exclamation-circle text-red-400"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm text-red-700">
+                                                    Please fill in these required fields: ${errorFields.join(', ')}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                                document.querySelector('#step-4').insertAdjacentHTML('afterbegin', errorHtml);
+                                return;
+                            }
+
+                            const btn = this;
+                            btn.disabled = true;
+                            btn.innerHTML = '<i class="fas fa-circle-notch btn-spin mr-2"></i> Generating...';
+                            btn.classList.add('cursor-not-allowed');
+                            
+                            // Add progress bar
+                            const progressHtml = `
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                                    <div id="generation-progress" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+                                </div>
+                            `;
+                            btn.insertAdjacentHTML('afterend', progressHtml);
+
+                            try {
+                                const response = await fetch('http://localhost:3000/api/generate-itinerary', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        destination: formData.destination,
+                                        dates: { 
+                                            start: formData.startDate, 
+                                            end: formData.endDate 
+                                        },
+                                        travelers: formData.travelers,
+                                        budget: formData.budget,
+                                        interests: formData.interests,
+                                        email: formData.email
+                                    })
+                                });
+
+                                const result = await response.json();
+                                
+                                if (result.success) {
+                                    document.getElementById('generation-progress').style.width = '100%';
+                                    // Show success message
+                                    const successHtml = `
+                                        <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-6">
+                                            <div class="flex">
+                                                <div class="flex-shrink-0">
+                                                    <i class="fas fa-check-circle text-green-400"></i>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <p class="text-sm text-green-700">
+                                                        Itinerary generated successfully! Check your email at ${formData.email}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                    document.querySelector('#step-4').insertAdjacentHTML('afterbegin', successHtml);
+                                    
+                                    // Reset form after 3 seconds
+                                    setTimeout(() => {
+                                        document.querySelector('form').reset();
+                                        showStep(1);
+                                    }, 3000);
+                                } else {
+                                    throw new Error(result.error || 'Failed to generate itinerary');
+                                }
+                            } catch (error) {
+                                // Show error message
+                                const errorHtml = `
+                                    <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fas fa-exclamation-circle text-red-400"></i>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm text-red-700">
+                                                    Error: ${error.message}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                                document.querySelector('#step-4').insertAdjacentHTML('afterbegin', errorHtml);
+                            } finally {
+                                btn.disabled = false;
+                                btn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Generate Itinerary';
+                                btn.classList.remove('cursor-not-allowed');
+                            }
+                        });
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Features</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    AI-Powered Trip Planning
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    Our advanced AI creates perfect itineraries tailored just for you
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
+                    <!-- Feature 1 -->
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-200"></div>
+                        <div class="relative bg-white p-6 rounded-lg h-full">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                                <i class="fas fa-robot text-xl"></i>
+                            </div>
+                            <div class="mt-5">
+                                <h3 class="text-lg font-medium text-gray-900">Smart AI Planner</h3>
+                                <p class="mt-2 text-base text-gray-500">
+                                    Our AI analyzes millions of data points to create the perfect itinerary based on your preferences.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-200"></div>
+                        <div class="relative bg-white p-6 rounded-lg h-full">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                                <i class="fas fa-wallet text-xl"></i>
+                            </div>
+                            <div class="mt-5">
+                                <h3 class="text-lg font-medium text-gray-900">100% Free</h3>
+                                <p class="mt-2 text-base text-gray-500">
+                                    Get personalized trip plans without spending a dime. No hidden fees, ever.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-200"></div>
+                        <div class="relative bg-white p-6 rounded-lg h-full">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                                <i class="fas fa-globe-americas text-xl"></i>
+                            </div>
+                            <div class="mt-5">
+                                <h3 class="text-lg font-medium text-gray-900">Global Coverage</h3>
+                                <p class="mt-2 text-base text-gray-500">
+                                    Plan trips to thousands of destinations worldwide with up-to-date information.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Process</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    How It Works
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="relative">
+                    <div class="hidden md:block absolute top-0 left-1/2 h-full w-0.5 bg-blue-200"></div>
+                    
+                    <!-- Step 1 -->
+                    <div class="relative mb-12 md:flex md:items-center md:group">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-500 text-white border-4 border-white shadow-md md:mr-6 md:ml-0 md:absolute md:left-1/2 md:-translate-x-1/2">
+                            <span class="text-lg font-bold">1</span>
+                        </div>
+                        <div class="mt-6 md:mt-0 md:w-1/2 md:pr-8 md:ml-auto">
+                            <h3 class="text-lg font-medium text-gray-900">Tell Us About Your Trip</h3>
+                            <p class="mt-2 text-base text-gray-500">
+                                Enter your destination, travel dates, interests, and budget. The more details you provide, the better your itinerary will be.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative mb-12 md:flex md:items-center md:group">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-500 text-white border-4 border-white shadow-md md:mr-6 md:ml-0 md:absolute md:left-1/2 md:-translate-x-1/2">
+                            <span class="text-lg font-bold">2</span>
+                        </div>
+                        <div class="mt-6 md:mt-0 md:w-1/2 md:pl-8">
+                            <h3 class="text-lg font-medium text-gray-900">AI Creates Your Itinerary</h3>
+                            <p class="mt-2 text-base text-gray-500">
+                                Our AI analyzes millions of data points to craft a personalized itinerary with activities, accommodations, and transportation.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative md:flex md:items-center md:group">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-500 text-white border-4 border-white shadow-md md:mr-6 md:ml-0 md:absolute md:left-1/2 md:-translate-x-1/2">
+                            <span class="text-lg font-bold">3</span>
+                        </div>
+                        <div class="mt-6 md:mt-0 md:w-1/2 md:pr-8 md:ml-auto">
+                            <h3 class="text-lg font-medium text-gray-900">Download & Enjoy</h3>
+                            <p class="mt-2 text-base text-gray-500">
+                                Receive your free itinerary instantly. Download it to your phone or print it out - you're ready for your perfect trip!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Testimonials</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Travelers Love Us
+                </p>
+            </div>
+
+            <div class="mt-10 grid gap-8 md:grid-cols-3">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="h-12 w-12 rounded-full overflow-hidden bg-gray-200">
+                            <i class="fas fa-user text-3xl text-gray-400 flex items-center justify-center h-full"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Sarah Johnson</h4>
+                            <p class="text-blue-600">Paris, France</p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-600">
+                            "The AI itinerary for my Paris trip was incredible! It included all the major sights plus hidden gems I would never have found on my own."
+                        </p>
+                        <div class="mt-3 flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="h-12 w-12 rounded-full overflow-hidden bg-gray-200">
+                            <i class="fas fa-user text-3xl text-gray-400 flex items-center justify-center h-full"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Michael Chen</h4>
+                            <p class="text-blue-600">Tokyo, Japan</p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-600">
+                            "As a solo traveler, I was nervous about planning my Japan trip. The AI created a perfect 2-week itinerary that covered everything!"
+                        </p>
+                        <div class="mt-3 flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="h-12 w-12 rounded-full overflow-hidden bg-gray-200">
+                            <i class="fas fa-user text-3xl text-gray-400 flex items-center justify-center h-full"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Emma Rodriguez</h4>
+                            <p class="text-blue-600">Bali, Indonesia</p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-600">
+                            "The Bali itinerary was exactly what my family needed. Perfect mix of adventure and relaxation. And it was completely free!"
+                        </p>
+                        <div class="mt-3 flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="gradient-bg text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+            <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                <span class="block">Ready to discover your perfect journey?</span>
+                <span class="block text-blue-200">Get your free AI-generated itinerary today.</span>
+            </h2>
+            <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+                <div class="inline-flex rounded-md shadow">
+                    <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50">
+                        <i class="fas fa-magic mr-2"></i> Plan My Trip
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">About</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Resources</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Privacy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Destinations</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Europe</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Asia</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Americas</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Connect</h3>
+                    <div class="mt-4 flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <span class="sr-only">Privacy Policy</span>
+                        Privacy
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <span class="sr-only">Terms of Service</span>
+                        Terms
+                    </a>
+                </div>
+                <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+                    &copy; 2023 Discover Your Journey. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
